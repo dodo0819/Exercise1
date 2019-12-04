@@ -40,9 +40,9 @@ class MainActivity : AppCompatActivity() {
         val interest = carLoan * editInterestRate.text.toString().toDouble() / 100 * editLoanPeriod.text.toString().toInt()
         val monthlyRepay = (carLoan + interest) / editLoanPeriod.text.toString().toInt() / 12
 
-        viewLoan.text = "Loan : " + carLoan.toString()
-        viewInterest.text = "Interest : " + interest.toString()
-        viewMonthlyRepay.text = "Monthly Repayment : " + monthlyRepay.toString()
+        viewLoan.text = carLoan.toString()
+        viewInterest.text =  interest.toString()
+        viewMonthlyRepay.text = monthlyRepay.toString()
 
         val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)

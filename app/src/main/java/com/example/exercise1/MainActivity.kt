@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         val viewMonthlyRepay = findViewById<TextView>(R.id.textViewMonthlyRepayment)
 
         val carLoan = editCarPrice.text.toString().toInt() - editDownPayment.text.toString().toInt()
-        val interest = carLoan * editInterestRate.text.toString().toDouble() / 100 * editLoanPeriod.text.toString().toInt()
+        val interest = carLoan * editInterestRate.text.toString().toFloat() / 100 * editLoanPeriod.text.toString().toInt()
         val monthlyRepay = (carLoan + interest) / editLoanPeriod.text.toString().toInt() / 12
 
         viewLoan.text = carLoan.toString()

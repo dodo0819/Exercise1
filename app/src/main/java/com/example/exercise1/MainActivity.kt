@@ -11,6 +11,7 @@ import android.widget.EditText
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
 import org.w3c.dom.Text
+import java.text.DecimalFormat
 
 class MainActivity : AppCompatActivity() {
 
@@ -37,12 +38,16 @@ class MainActivity : AppCompatActivity() {
         val viewMonthlyRepay = findViewById<TextView>(R.id.textViewMonthlyRepayment)
 
         val carLoan = editCarPrice.text.toString().toInt() - editDownPayment.text.toString().toInt()
-        val interest = carLoan * editInterestRate.text.toString().toFloat() / 100 * editLoanPeriod.text.toString().toInt()
+        val interest = carLoan * editInterestRate.text.toString().toDouble() / 100 * editLoanPeriod.text.toString().toInt()
         val monthlyRepay = (carLoan + interest) / editLoanPeriod.text.toString().toInt() / 12
+
+        val number = java.lang.Double.valueOf(monthlyRepay)
+        val dec = DecimalFormat("#.##")
+        val r = dec.format(number)
 
         viewLoan.text = carLoan.toString()
         viewInterest.text =  interest.toString()
-        viewMonthlyRepay.text = monthlyRepay.toString()
+        viewMonthlyRepay.text = r
 
         val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
@@ -64,5 +69,8 @@ class MainActivity : AppCompatActivity() {
         viewLoan.setText(R.string.loan)
         viewInterest.setText(R.string.interest)
         viewMonthlyRepay.setText(R.string.monthly_repayment)
+
+        val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
 }
